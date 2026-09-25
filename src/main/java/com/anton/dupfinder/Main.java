@@ -7,8 +7,8 @@ public class Main {
         FileScanner scanner = new FileScanner();
         Path rootPath = Path.of("C:/Users/anton/duplicate-test");
         scanner.scanFiles(rootPath);
-        List<Path> files = scanner();
-
+        List<Path> files = scanner.scanFiles(rootPath);
+        System.out.println(files);
 
     }
 }
