@@ -9,6 +9,10 @@ public class Main {
         scanner.scanFiles(rootPath);
         List<Path> files = scanner.scanFiles(rootPath);
         System.out.println(files);
-
+        HashCalculator hashCalculator = new HashCalculator();
+        for(Path file : files) {
+            String hash = hashCalculator.calculateHash(file);
+            System.out.println("The calculated Hash : "+ hash);
+        }
     }
 }
