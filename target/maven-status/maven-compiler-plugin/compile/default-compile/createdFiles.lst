@@ -1,3 +1,4 @@
+com\anton\dupfinder\DuplicateGrouper.class
+com\anton\dupfinder\Main.class
 com\anton\dupfinder\FileScanner.class
 com\anton\dupfinder\HashCalculator.class
-com\anton\dupfinder\Main.class

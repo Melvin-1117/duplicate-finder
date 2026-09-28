@@ -1,6 +1,8 @@
 package com.anton.dupfinder;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
+
 public class Main {
     public static void main(String [] args){
         System.out.print("Duplicate file finder started");
@@ -14,5 +16,7 @@ public class Main {
             String hash = hashCalculator.calculateHash(file);
             System.out.println("The calculated Hash : "+ hash);
         }
+        Map<String, List<Path>> groupDup = DuplicateGrouper.duplicateGrouper(files);
+        System.out.println(groupDup);
     }
 }
