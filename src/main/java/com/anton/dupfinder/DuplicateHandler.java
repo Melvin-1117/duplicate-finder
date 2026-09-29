@@ -9,10 +9,14 @@ public class DuplicateHandler {
         for(Map.Entry<String , List<Path>> entry : groupedFiles.entrySet()){
             List<Path> files = entry.getValue();
             if(files.size()>1){
-                System.out.println(entry.getKey());
+                System.out.println("Hash: " + entry.getKey());
+                int num=1;
+                System.out.println("Files:" );
                 for(Path file : files){
-                    System.out.println(file);
+                    System.out.println(num+". " + file);
+                    num++;
                 }
+                System.out.println("--------------------------------------------------------------------------------");
             }
         }
     }
