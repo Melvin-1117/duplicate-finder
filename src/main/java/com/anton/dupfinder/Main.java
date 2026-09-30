@@ -17,7 +17,8 @@ public class Main {
             System.out.println("The calculated Hash : "+ hash);
         }
         Map<String, List<Path>> groupDup = DuplicateGrouper.duplicateGrouper(files);
-
         DuplicateHandler.handleDuplicate(groupDup);
+        Path reportPath = Path.of("duplicates_report.txt");
+        ReportWriter.writeReport(groupDup, reportPath);
     }
 }
