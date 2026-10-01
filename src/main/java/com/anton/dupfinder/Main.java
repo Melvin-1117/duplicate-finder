@@ -14,7 +14,6 @@ public class Main {
         HashCalculator hashCalculator = new HashCalculator();
         for(Path file : files) {
             String hash = hashCalculator.calculateHash(file);
-            System.out.println("The calculated Hash : "+ hash);
         }
         Map<String, List<Path>> groupDup = DuplicateGrouper.duplicateGrouper(files);
         DuplicateHandler.handleDuplicate(groupDup);

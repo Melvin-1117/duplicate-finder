@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportWriter {
-    public static void writeReport(Map<String, List<Path>> groupedFile, Path reportPath) {
+    public static void writeReport(Map<String, List<Path>> groupedFile, Path reportPath) {                  // Receives the grouped duplicate files and the path where the report should be saved.
         try {
-            StringBuilder reportContent = new StringBuilder();
+            StringBuilder reportContent = new StringBuilder();                                              // Creates a StringBuilder to construct the complete report in memory.
             reportContent.append("=====================================\n");
             reportContent.append("DUPLICATE FILE REPORT\n");
             reportContent.append("=====================================\n");
-            for (Map.Entry<String, List<Path>> entry : groupedFile.entrySet()) {
-                List<Path> files = entry.getValue();
+            for (Map.Entry<String, List<Path>> entry : groupedFile.entrySet()) {                            // Iterates through every hash group stored in the duplicate map. map.entrySet() is used when both key and value is needed
+                List<Path> files = entry.getValue();                                                        // This line is responsible for getting the list of files respected to their hash
                 if (files.size() > 1) {
                     reportContent.append("Hash: " + entry.getKey() + "\n");
                     int num = 1;
@@ -23,7 +23,7 @@ public class ReportWriter {
                         reportContent.append(num + ". " + file+"\n");
                         num++;
                     }
-                    Files.writeString(reportPath, reportContent.toString());
+                    Files.writeString(reportPath, reportContent.toString());                                // Converts the StringBuilder into a String and writes the complete report to the specified file.
                 }
             }
         } catch (IOException e) {
