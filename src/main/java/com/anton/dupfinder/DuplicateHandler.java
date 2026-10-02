@@ -3,9 +3,10 @@ package com.anton.dupfinder;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class DuplicateHandler {
-    public static void handleDuplicate(Map<String, List<Path>> groupedFiles) {
+    public static void handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
         boolean duplicateFound = false;
         for (Map.Entry<String, List<Path>> entry : groupedFiles.entrySet()) {
             List<Path> files = entry.getValue();
@@ -19,6 +20,11 @@ public class DuplicateHandler {
                     num++;
                 }
                 System.out.println("--------------------------------------------------------------------------------");
+                int choice=0;
+                do{
+                    System.out.println("Which file do you want to keep?");
+                    choice =sc.nextInt();
+                }while(choice<=0||choice>files.size());
             }
         }
         if (!duplicateFound) {

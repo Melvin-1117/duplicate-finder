@@ -17,7 +17,7 @@ public class Main {
             FileScanner scanner = new FileScanner();
             List<Path> files = scanner.scanFiles(rootPath);
             Map<String, List<Path>> groupDup = DuplicateGrouper.duplicateGrouper(files);
-            DuplicateHandler.handleDuplicate(groupDup);
+            DuplicateHandler.handleDuplicate(groupDup , sc);
             Path reportPath = Path.of("duplicates_report.txt");
             ReportWriter.writeReport(groupDup, reportPath);
         } else {
