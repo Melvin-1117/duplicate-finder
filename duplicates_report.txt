@@ -3,9 +3,9 @@ DUPLICATE FILE REPORT
 =====================================
 Hash: f0f41151c33d5aa0497290f5b03b0ea6de9396c17c17f2d0ad29128174aae919
 Files:
-1. C:\Users\anton\duplicate-test\Checking set file.srt
-2. C:\Users\anton\duplicate-test\Obsession.2025.2160p.WEB-DL.DDP5.1.H.265-MYOTTMYSUBS.EN.srt
+1. c:\Users\anton\duplicate-test\Checking set file.srt
+2. c:\Users\anton\duplicate-test\Obsession.2025.2160p.WEB-DL.DDP5.1.H.265-MYOTTMYSUBS.EN.srt
 Hash: 985385f2363d95c2e982ef605a2ce24105b95ff3aca543a3a23700084c9052b7
 Files:
-1. C:\Users\anton\duplicate-test\MELVIN_.pdf
-2. C:\Users\anton\duplicate-test\MELVIN_Resume.pdf
+1. c:\Users\anton\duplicate-test\MELVIN_.pdf
+2. c:\Users\anton\duplicate-test\MELVIN_Resume.pdf

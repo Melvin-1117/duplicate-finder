@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void  main(String[] args) {
         System.out.println("Duplicate file finder started");
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the directory: ");
@@ -26,3 +26,4 @@ public class Main {
 
     }
 }
+
