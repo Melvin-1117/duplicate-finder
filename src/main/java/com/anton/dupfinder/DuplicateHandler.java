@@ -1,9 +1,11 @@
 package com.anton.dupfinder;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.nio.file.Files;
 
 public class DuplicateHandler {
     public static void handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
@@ -40,6 +42,16 @@ public class DuplicateHandler {
                 String confirmation = sc.nextLine();
                 if(confirmation.equalsIgnoreCase("Y")){
                     System.out.println("Deletion confirmed");
+                    try {
+                        for (int i = 0; i < files.size(); i++) {
+                            if (i != index) {
+                                Path fileToDelete = files.get(i);
+                                Files.delete(fileToDelete);
+                            }
+                        }
+                    }catch (IOException e){
+                        System.out.println("Unable to delete the file"+e.getMessage());
+                    }
                 }
 
             }
