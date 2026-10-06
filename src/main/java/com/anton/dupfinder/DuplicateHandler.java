@@ -9,6 +9,7 @@ import java.nio.file.Files;
 
 public class DuplicateHandler {
     public static void handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
+        DuplicateDeleter deleter = new DuplicateDeleter();
         boolean duplicateFound = false;
         for (Map.Entry<String, List<Path>> entry : groupedFiles.entrySet()) {
             List<Path> files = entry.getValue();
@@ -38,20 +39,17 @@ public class DuplicateHandler {
                         System.out.println("Will be deleted: " + fileToDelete);
                     }
                 }
-                System.out.println("Confirm Deletion? (Y/N) :");
-                String confirmation = sc.nextLine();
-                if(confirmation.equalsIgnoreCase("Y")){
-                    System.out.println("Deletion confirmed");
-                    try {
-                        for (int i = 0; i < files.size(); i++) {
-                            if (i != index) {
-                                Path fileToDelete = files.get(i);
-                                Files.delete(fileToDelete);
-                            }
-                        }
-                    }catch (IOException e){
-                        System.out.println("Unable to delete the file"+e.getMessage());
+                String confirmation ="";
+                do {
+                    System.out.println("Confirm Deletion? (Y/N) :");
+                    confirmation = sc.nextLine();
+                    if(!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y")){
+                        System.out.println("Please enter a valid Y/N");
                     }
+                }while(!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y"));
+                if (confirmation.equalsIgnoreCase("Y")) {
+                    System.out.println("Deletion confirmed");
+                    deleter.deleteDuplicates(files,index);
                 }
 
             }
