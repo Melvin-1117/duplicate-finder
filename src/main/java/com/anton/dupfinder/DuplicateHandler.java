@@ -1,11 +1,9 @@
 package com.anton.dupfinder;
-
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.nio.file.Files;
+
 
 public class DuplicateHandler {
     public static void handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
