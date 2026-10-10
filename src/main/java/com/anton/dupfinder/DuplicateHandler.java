@@ -3,11 +3,12 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class DuplicateHandler {
-    public static void handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
+    public static List<DuplicateResult> handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
         DuplicateDeleter deleter = new DuplicateDeleter();
+        List<DuplicateResult>=new ArrayList<>();
         boolean duplicateFound = false;
         for (Map.Entry<String, List<Path>> entry : groupedFiles.entrySet()) {
             List<Path> files = entry.getValue();
