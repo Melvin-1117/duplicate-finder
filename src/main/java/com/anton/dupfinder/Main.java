@@ -17,9 +17,9 @@ public class Main {
             FileScanner scanner = new FileScanner();
             List<Path> files = scanner.scanFiles(rootPath);
             Map<String, List<Path>> groupDup = DuplicateGrouper.duplicateGrouper(files);
-            DuplicateHandler.handleDuplicate(groupDup , sc);
+            List<DuplicateResult> duplicateResults = DuplicateHandler.handleDuplicate(groupDup , sc);
             Path reportPath = Path.of("duplicates_report.txt");
-            ReportWriter.writeReport(groupDup, reportPath);
+            ReportWriter.writeReport(duplicateResults, reportPath);
         } else {
             System.out.println("Invalid directory. Please enter a valid directory path.");
         }

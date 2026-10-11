@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DuplicateHandler {
     public static List<DuplicateResult> handleDuplicate(Map<String, List<Path>> groupedFiles, Scanner sc) {
         DuplicateDeleter deleter = new DuplicateDeleter();
-        List<DuplicateResult>=new ArrayList<>();
+        List<DuplicateResult> results = new ArrayList<>();
         boolean duplicateFound = false;
         for (Map.Entry<String, List<Path>> entry : groupedFiles.entrySet()) {
             List<Path> files = entry.getValue();
@@ -46,15 +46,18 @@ public class DuplicateHandler {
                         System.out.println("Please enter a valid Y/N");
                     }
                 }while(!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y"));
+                List<Path> deletedFiles = new ArrayList<>();
                 if (confirmation.equalsIgnoreCase("Y")) {
                     System.out.println("Deletion confirmed");
-                    deleter.deleteDuplicates(files,index);
+                    deletedFiles =deleter.deleteDuplicates(files,index);
                 }
-
+                    DuplicateResult duplicateResult = new DuplicateResult( entry.getKey(),files,selectedFile,deletedFiles);
+                    results.add(duplicateResult);
             }
         }
         if (!duplicateFound) {
             System.out.println("No duplicate files were found.");
         }
+        return results;
     }
 }

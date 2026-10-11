@@ -1,4 +1,8 @@
+com\anton\dupfinder\DuplicateDeleter.class
+com\anton\dupfinder\DuplicateHandler.class
 com\anton\dupfinder\DuplicateGrouper.class
-com\anton\dupfinder\Main.class
+com\anton\dupfinder\DuplicateResult.class
 com\anton\dupfinder\FileScanner.class
+com\anton\dupfinder\ReportWriter.class
+com\anton\dupfinder\Main.class
 com\anton\dupfinder\HashCalculator.class
