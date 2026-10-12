@@ -1,11 +1,8 @@
 package com.anton.dupfinder;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.Map;
-
 public class ReportWriter {
     public static void writeReport(List<DuplicateResult> duplicateResults, Path reportPath) {
         try {
@@ -17,12 +14,22 @@ public class ReportWriter {
                 List<Path> files = result.getFiles();                                                        // This line is responsible for getting the list of files respected to their hash
                 reportContent.append("Hash: " + result.getHash() + "\n");
                 int num = 1;
-                reportContent.append("Files:\n");
+                reportContent.append("Original duplicate files:\n");
                 for (Path file : files) {
                     reportContent.append(num + ". " + file + "\n");
                     num++;
                 }
                 reportContent.append("Selected file to keep :"+ result.getSelectedFile()+"\n");
+                List<Path> deletedFiles = result.getDeletedFiles();
+                if(deletedFiles.isEmpty()){
+                    reportContent.append("No files were deleted"+"\n");
+                }else{
+                    reportContent.append("Successfully deleted files: "+"\n");
+                    for(Path deletedItem : deletedFiles){
+                        reportContent.append(deletedItem+"\n");
+                    }
+                }
+                reportContent.append("--------------------------------------------------------------------------------------------------\n");
             }
             Files.writeString(reportPath, reportContent.toString());                                // Converts the StringBuilder into a String and writes the complete report to the specified file.
         } catch (IOException e) {
