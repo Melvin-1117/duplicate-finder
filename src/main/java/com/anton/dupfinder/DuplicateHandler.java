@@ -1,4 +1,5 @@
 package com.anton.dupfinder;
+
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,16 @@ public class DuplicateHandler {
                 int choice = 0;
                 do {
                     System.out.println("Which file do you want to keep?");
-                    choice = sc.nextInt();
+                    if (sc.hasNextInt()) {
+                        choice = sc.nextInt();
+                        if (choice <= 0 || choice > files.size()) {
+                            System.out.println("Enter a valid number between 1 and " + files.size());
+                        }
+                    } else {
+                        System.out.println("Invalid input , please enter a valid input");
+                        sc.nextLine();
+                        choice=0;
+                    }
                 } while (choice <= 0 || choice > files.size());
                 sc.nextLine();
                 int index = choice - 1;
@@ -38,21 +48,21 @@ public class DuplicateHandler {
                         System.out.println("Will be deleted: " + fileToDelete);
                     }
                 }
-                String confirmation ="";
+                String confirmation = "";
                 do {
                     System.out.println("Confirm Deletion? (Y/N) :");
                     confirmation = sc.nextLine();
-                    if(!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y")){
+                    if (!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y")) {
                         System.out.println("Please enter a valid Y/N");
                     }
-                }while(!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y"));
+                } while (!confirmation.equalsIgnoreCase("N") && !confirmation.equalsIgnoreCase("Y"));
                 List<Path> deletedFiles = new ArrayList<>();
                 if (confirmation.equalsIgnoreCase("Y")) {
                     System.out.println("Deletion confirmed");
-                    deletedFiles =deleter.deleteDuplicates(files,index);
+                    deletedFiles = deleter.deleteDuplicates(files, index);
                 }
-                    DuplicateResult duplicateResult = new DuplicateResult( entry.getKey(),files,selectedFile,deletedFiles);
-                    results.add(duplicateResult);
+                DuplicateResult duplicateResult = new DuplicateResult(entry.getKey(), files, selectedFile, deletedFiles);
+                results.add(duplicateResult);
             }
         }
         if (!duplicateFound) {
