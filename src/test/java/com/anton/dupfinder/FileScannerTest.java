@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class FileScannerTest {
     @TempDir
     Path tempDir;
@@ -20,5 +22,13 @@ public class FileScannerTest {
         FileScanner scanner = new FileScanner();
         List<Path> scannedFiles = scanner.scanFiles(tempDir);
         assertEquals(2,scannedFiles.size());
+        assertTrue(scannedFiles.contains(firstFile));
+        assertTrue(scannedFiles.contains(secondFile));
+    }
+    @Test
+    void emptyDirectoryReturnsEmptyList(){
+        FileScanner scanner = new FileScanner();
+        List<Path> scannedFiles = scanner.scanFiles(tempDir);
+        assertTrue(scannedFiles.isEmpty());
     }
 }
