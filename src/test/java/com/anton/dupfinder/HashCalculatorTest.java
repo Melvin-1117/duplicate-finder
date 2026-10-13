@@ -1,6 +1,7 @@
 package com.anton.dupfinder;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.Path;
 import java.nio.file.Files;
@@ -18,5 +19,15 @@ class HashCalculatorTest {
             String firstHash = calci.calculateHash(firstFile);
             String secondHash = calci.calculateHash(secondFile);
             assertEquals(firstHash,secondHash);
+        }
+        void differentContentProducesDifferentHashes() throws IOException{
+            Path firstFile = tempDir.resolve("first.txt");
+            Path secondFile= tempDir.resolve("second.txt");
+            Files.writeString(firstFile,"Hello Java");
+            Files.writeString(secondFile,"Hello java");
+            HashCalculator calci = new HashCalculator();
+            String firstHash = calci.calculateHash(firstFile);
+            String secondHash = calci.calculateHash(secondFile);
+            assertNotEquals(firstHash,secondHash);
         }
 }
