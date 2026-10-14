@@ -1,4 +1,5 @@
 package com.anton.dupfinder;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;   //MessageDigest is a mechanism that is used to use algorithm, here sha-256 is used and message digest works Like an API
@@ -6,12 +7,15 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;   // this particular import is for java messageDigest exception handling
 public class HashCalculator{
     public String calculateHash(Path filePath){
-        try {
-            byte[] fileBytes = Files.readAllBytes(filePath);                           // this line is responsible for reading the file and retrun a byte array
+        try (InputStream fileBytes = Files.newInputStream(filePath)){                // this line is responsible for reading the file and retrun a byte array
             MessageDigest digest = MessageDigest.getInstance("SHA-256");      // this line is responsible for creating messageDigest object to use SHA-256 algorithm.
-            digest.update(fileBytes);                                                  // it digest the input and converts into the format required for hashing algorithm
-            byte[] hashBytes = digest.digest();                                        // it gives the required byte array to perform the hash conversion
+            byte[] buffer = new byte[8192];
             StringBuilder hexString = new StringBuilder();                             // StringBuilders are used to create a mutable string characters
+            int num;
+            while ((num = fileBytes.read(buffer)) != -1) {
+                digest.update(buffer, 0, num);
+            }
+            byte[] hashBytes = digest.digest();                                        // it gives the required byte array to perform the hash conversion
             for (int i = 0; i < hashBytes.length; i++) {
                 hexString.append(String.format("%02x", hashBytes[i] & 0xFF));          // here the resultant hash is being built and "%02x" is used to convert the hexadecimal in 2 character format and 0xFF this is used to convert the string in unsigned byte value
             }

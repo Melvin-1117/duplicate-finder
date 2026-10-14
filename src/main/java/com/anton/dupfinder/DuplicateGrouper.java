@@ -10,6 +10,11 @@ public class DuplicateGrouper{
         HashCalculator calculator = new HashCalculator();                                           // this object is calls the hashcalculator class and reuse it
         for(Path file : files){                                                                     // for each loop for every hash and file iteration
             String hash= calculator.calculateHash(file);                                            // calculate the hash for every file in each iterations
+            if(hash==null){
+                System.out.println(file + ": couldn't be hashed");
+                continue;
+            }
+
             if(groupDuplicates.containsKey(hash)){                                                  // if hash already exists the if block executes and add the file too existingfile Arraylist
                 List<Path> existingFiles = groupDuplicates.get(hash);
                 existingFiles.add(file);

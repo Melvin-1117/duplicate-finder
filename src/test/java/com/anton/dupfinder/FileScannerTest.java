@@ -26,9 +26,14 @@ public class FileScannerTest {
         assertTrue(scannedFiles.contains(secondFile));
     }
     @Test
-    void emptyDirectoryReturnsEmptyList(){
+    void emptyDirectoryReturnsEmptyList() throws IOException {
         FileScanner scanner = new FileScanner();
-        List<Path> scannedFiles = scanner.scanFiles(tempDir);
+        List<Path> scannedFiles = null;
+        try {
+            scannedFiles = scanner.scanFiles(tempDir);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         assertTrue(scannedFiles.isEmpty());
     }
 }
