@@ -1,0 +1,9 @@
+﻿# IntelliJ IDEA
+.idea/
+*.iml
+
+# Maven build output
+target/
+
+# Generated duplicate report
+duplicates_report.txt
