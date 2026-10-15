@@ -76,4 +76,3 @@ The application will scan the directory, group duplicate files, let you choose w
 
 **Warning:** Files selected for deletion are permanently deleted and are not moved to the Recycle Bin. Carefully review the selected files before confirming deletion.
 
-**Warning:** Files selected for deletion are permanently deleted and are not moved to the Recycle Bin. Carefully review the selected files before confirming deletion.
